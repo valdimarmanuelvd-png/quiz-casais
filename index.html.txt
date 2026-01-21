@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz de Casais</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="quiz-box">
+    <h1>Quiz de Casais 💑</h1>
+    <div id="contador"></div>
+    <div id="pergunta"></div>
+
+    <div class="area-botoes">
+        <button class="btn-sim" onclick="responder('Sim')">Sim</button>
+        <button class="btn-nao" id="btnNao" onclick="responder('Não')">Não</button>
+    </div>
+
+    <div id="feedback"></div>
+</div>
+
+<audio id="somSim" src="audio/sim.mp3"></audio>
+<audio id="somNao" src="audio/nao.mp3"></audio>
+
+<script src="js/script.js"></script>
+</body>
+</html>
