@@ -1,0 +1,107 @@
+</style>
+</head>
+<body>
+
+<div class="quiz-box">
+    <h1>Quiz de Casais 💑</h1>
+
+    <div class="contador" id="contador"></div>
+
+    <div class="pergunta" id="pergunta"></div>
+
+    <div class="area-botoes">
+        <button class="btn-sim" onclick="responder('Sim')">Sim</button>
+        <button class="btn-nao" id="btnNao" onclick="responder('Não')">Não</button>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+</div>
+
+<!-- Sons -->
+<audio id="somSim" src="sim.mp3"></audio>
+<audio id="somNao" src="nao.mp3"></audio>
+
+<script>
+    const perguntas = [
+        "Você acredita que a comunicação é essencial no relacionamento?",
+        "Você sente atração física pelo seu parceiro(a)?",
+        "Beijos e carinhos fazem diferença no dia a dia do casal?",
+        "A intimidade sexual fortalece a relação?",
+        "Confiança é mais importante que ciúmes?",
+        "Você se sente à vontade para falar de desejos com seu parceiro(a)?",
+        "Momentos a dois ajudam a manter a paixão?",
+        "O respeito é fundamental mesmo durante discussões?"
+    ];
+
+    let indice = 0;
+    let respostas = [];
+
+    const perguntaEl = document.getElementById("pergunta");
+    const contadorEl = document.getElementById("contador");
+    const feedbackEl = document.getElementById("feedback");
+    const btnNao = document.getElementById("btnNao");
+
+    function atualizarPergunta() {
+        perguntaEl.innerText = perguntas[indice];
+        contadorEl.innerText = `Pergunta ${indice + 1} de ${perguntas.length}`;
+    }
+
+    atualizarPergunta();
+
+    function responder(valor) {
+        respostas.push({
+            pergunta: perguntas[indice],
+            resposta: valor
+        });
+
+        if (valor === "Sim") {
+            document.getElementById("somSim").play();
+            feedbackEl.innerHTML = `
+                <div>Resposta: SIM 😍🔥</div>
+                <img src="https://via.placeholder.com/80?text=❤️" alt="Coração">
+            `;
+        } else {
+            document.getElementById("somNao").play();
+            feedbackEl.innerHTML = `
+                <div>Resposta: NÃO 😅🙈</div>
+                <img src="https://via.placeholder.com/80?text=🙃" alt="Emoji">
+            `;
+        }
+
+        indice++;
+
+        setTimeout(() => {
+            feedbackEl.innerHTML = "";
+            if (indice < perguntas.length) {
+                atualizarPergunta();
+            } else {
+                mostrarResultadoFinal();
+            }
+        }, 1200);
+    }
+
+    function mostrarResultadoFinal() {
+        let lista = respostas.map((r, i) =>
+            `<li><strong>${i + 1}.</strong> ${r.pergunta}<br>Resposta: ${r.resposta}</li>`
+        ).join("");
+
+        document.querySelector(".quiz-box").innerHTML = `
+            <h1>Resultado Final 💖</h1>
+            <p>Você concluiu o quiz!</p>
+            <ul style="text-align:left">${lista}</ul>
+            <p>Obrigado por participar 😄</p>
+        `;
+    }
+
+    // Botão "Não" fujão
+    btnNao.addEventListener("mouseover", () => {
+        const x = Math.random() * 300;
+        const y = Math.random() * 80;
+
+        btnNao.style.left = x + "px";
+        btnNao.style.bottom = y + "px";
+    });
+</script>
+
+</body>
+</html>

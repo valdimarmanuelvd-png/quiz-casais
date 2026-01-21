@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #fbecec;
+    text-align: center;
+}
+
+.quiz-box {
+    background: white;
+    padding: 30px;
+    max-width: 520px;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.btn-sim {
+    background: green;
+    color: white;
+}
+
+.btn-nao {
+    background: red;
+    color: white;
+    position: absolute;
+}
